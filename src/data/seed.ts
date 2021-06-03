@@ -1,6 +1,4 @@
-import { MongoClient } from "https://deno.land/x/mongo@v0.21.2/src/client.ts";
-import { Database } from "https://deno.land/x/mongo@v0.21.2/src/database.ts";
-import { Collection } from "https://deno.land/x/mongo@v0.21.2/src/collection/collection.ts";
+import { Collection, Database, MongoClient } from "../../deps.ts";
 
 import { IUser } from "../interfaces/user.ts";
 

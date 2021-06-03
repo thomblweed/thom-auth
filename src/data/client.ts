@@ -1,8 +1,5 @@
-import "https://deno.land/x/dotenv/load.ts";
-import { MongoClient } from "https://deno.land/x/mongo@v0.21.2/src/client.ts";
-import { green, red } from "https://deno.land/std@0.88.0/fmt/colors.ts";
-import { Bson } from "https://deno.land/x/mongo@v0.21.2/deps.ts";
-// import { ConnectOptions } from "https://deno.land/x/mongo@v0.21.2/src/types.ts";
+import "https://deno.land/x/dotenv@v2.0.0/load.ts";
+import { Bson, green, MongoClient, red, yellow } from "../../deps.ts";
 
 import { Seed } from "./seed.ts";
 import PasswordManager from "../services/password-manager.ts";
@@ -26,17 +23,10 @@ if (!userPassword) throw new Error("USER_PASSWORD is not defined");
 const mongoClient: MongoClient = new MongoClient();
 
 try {
-  // const options: ConnectOptions = {
-  //   servers: [{
-  //     host: mongoUri,
-  //     port: mongoPort,
-  //   }],
-  //   db: "auth",
-  // };
   await mongoClient.connect(`${mongoUri}:${mongoPort}`);
   console.log(
-    "connected to boda-auth mongoDb at :>>",
-    green(`${mongoUri}:${mongoPort}`),
+    green("Connected") + " to thom-auth mongoDb at :>>",
+    yellow(`${mongoUri}:${mongoPort}`),
   );
 
   const seed: Seed = new Seed(mongoClient);

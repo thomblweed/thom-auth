@@ -1,4 +1,4 @@
-import { BodyJson, Context } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+import { BodyJson, Context } from "../../deps.ts";
 
 import { AuthDatabase } from "../data/auth-database.ts";
 import { UserService } from "../data/user-service.ts";

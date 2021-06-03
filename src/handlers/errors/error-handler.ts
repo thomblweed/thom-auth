@@ -1,5 +1,4 @@
-import { Context } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-import { red, yellow } from "https://deno.land/std@0.88.0/fmt/colors.ts";
+import { Context, red, yellow } from "../../../deps.ts";
 
 import { AuthError } from "./abstract/auth-error.ts";
 

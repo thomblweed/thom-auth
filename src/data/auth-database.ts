@@ -1,4 +1,4 @@
-import { Database } from "https://deno.land/x/mongo@v0.21.2/src/database.ts";
+import { Database } from "../../deps.ts";
 
 import { mongoClient } from "./client.ts";
 

@@ -1,5 +1,4 @@
-import { Context } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-import { Payload } from "https://deno.land/x/djwt@v2.2/mod.ts";
+import { Context, Payload } from "../../deps.ts";
 
 import { IUserDTO } from "../interfaces/user.ts";
 import { TokenManager } from "../services/token-manager.ts";

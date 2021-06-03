@@ -1,4 +1,4 @@
-import { Context } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+import { Context } from "../../deps.ts";
 
 const signout = async (ctx: Context) => {
   ctx.cookies.delete("thom-jwt");
