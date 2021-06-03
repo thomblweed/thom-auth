@@ -1,6 +1,4 @@
-import { Application } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-import { oakCors } from "https://deno.land/x/cors@v1.2.1/mod.ts";
-import { yellow } from "https://deno.land/std@0.88.0/fmt/colors.ts";
+import { Application, oakCors, yellow } from "./deps.ts";
 
 import { errorHandler } from "./src/handlers/errors/error-handler.ts";
 import router from "./src/router/router.ts";

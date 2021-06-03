@@ -1,4 +1,4 @@
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+import { bcrypt } from "../../deps.ts";
 
 class PasswordManager {
   static async toHash(password: string): Promise<string> {

@@ -1,6 +1,4 @@
-import { Collection } from "https://deno.land/x/mongo@v0.21.2/src/collection/collection.ts";
-import { Document } from "https://deno.land/x/mongo@v0.21.2/src/types.ts";
-import { Database } from "https://deno.land/x/mongo@v0.21.2/src/database.ts";
+import { Collection, Database, Document } from "../../deps.ts";
 
 import { IUser } from "../interfaces/user.ts";
 import PasswordManager from "../services/password-manager.ts";

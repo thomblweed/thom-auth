@@ -1,4 +1,4 @@
-import { Document } from "https://deno.land/x/mongo@v0.21.2/src/types.ts";
+import { Document } from "../../deps.ts";
 
 interface IUser {
   _id: Document;
