@@ -1,6 +1,7 @@
 import { BodyJson, Context } from "../../deps.ts";
 
 import { AuthDatabase } from "../data/auth-database.ts";
+import { Client } from "../data/client.ts";
 import { UserService } from "../data/user-service.ts";
 import { IUser, IUserDTO } from "../interfaces/user.ts";
 import PasswordManager from "../services/password-manager.ts";
@@ -11,8 +12,11 @@ const signin = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
   const user: IUser = await body.value;
 
-  const authDatabase: AuthDatabase = AuthDatabase.getInstance();
-  const userService = new UserService(authDatabase.value);
+  // const authDatabase: AuthDatabase = AuthDatabase.getInstance();
+  const client = Client.getInstance();
+  const authDatabase = client.getDatabase("auth");
+  console.log(`authDatabase`, authDatabase.name);
+  const userService = new UserService(authDatabase);
 
   const existingUser: IUser | undefined = await userService
     .findUserByEmail(user.email);

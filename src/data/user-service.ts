@@ -24,6 +24,14 @@ class UserService {
 
     return await this.users.findOne({ _id: userDocument });
   }
+
+  async addUsers(users: IUser[]): Promise<void> {
+    await this.users.insertMany(users);
+  }
+
+  async getNumberOfUsers(): Promise<number> {
+    return await this.users.count();
+  }
 }
 
 export { UserService };
