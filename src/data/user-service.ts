@@ -1,13 +1,14 @@
 import { Collection, Database, Document } from "../../deps.ts";
 
 import { IUser } from "../interfaces/user.ts";
+import { USERS_COLLECTION } from "../services/consts.ts";
 import PasswordManager from "../services/password-manager.ts";
 
 class UserService {
   private users: Collection<IUser>;
 
   constructor(database: Database) {
-    this.users = database.collection<IUser>("users");
+    this.users = database.collection<IUser>(USERS_COLLECTION);
   }
 
   async findUserByEmail(email: string): Promise<IUser | undefined> {

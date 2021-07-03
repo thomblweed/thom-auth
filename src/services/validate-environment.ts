@@ -1,4 +1,4 @@
-import { EnvVars } from "../../consts.ts";
+import { EnvVars } from "./consts.ts";
 
 const requiredEnvironmentVariables = [
   EnvVars.MONGO_URI,

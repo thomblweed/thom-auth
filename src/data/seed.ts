@@ -1,6 +1,7 @@
-import { Collection, Database, MongoClient } from "../../deps.ts";
+import { Database, MongoClient } from "../../deps.ts";
 
 import { IUser } from "../interfaces/user.ts";
+import { AUTH_DATABASE } from "../services/consts.ts";
 import { UserService } from "./user-service.ts";
 
 class Seed {
@@ -8,7 +9,7 @@ class Seed {
   private _userService: UserService;
 
   constructor(mongoClient: MongoClient) {
-    this._database = mongoClient.database("auth");
+    this._database = mongoClient.database(AUTH_DATABASE);
     this._userService = new UserService(this._database);
   }
 

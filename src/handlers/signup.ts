@@ -5,12 +5,13 @@ import { IUser, IUserDTO } from "../interfaces/user.ts";
 import { BadRequestError } from "./errors/bad-request-error.ts";
 import { TokenManager } from "../services/token-manager.ts";
 import { Client } from "../data/client.ts";
+import { AUTH_DATABASE } from "../services/consts.ts";
 
 const signup = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
   const requestedUser: IUser = await body.value;
 
-  const authDatabase = Client.getInstance().getDatabase("auth");
+  const authDatabase = Client.getInstance().getDatabase(AUTH_DATABASE);
   const userService = new UserService(authDatabase);
 
   const existingUser: IUser | undefined = await userService
