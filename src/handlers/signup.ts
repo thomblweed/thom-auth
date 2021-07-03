@@ -1,7 +1,6 @@
 import { BodyJson, Context } from "../../deps.ts";
 
 import { UserService } from "../data/user-service.ts";
-import { AuthDatabase } from "../data/auth-database.ts";
 import { IUser, IUserDTO } from "../interfaces/user.ts";
 import { BadRequestError } from "./errors/bad-request-error.ts";
 import { TokenManager } from "../services/token-manager.ts";
@@ -11,9 +10,7 @@ const signup = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
   const requestedUser: IUser = await body.value;
 
-  // const authDatabase: AuthDatabase = AuthDatabase.getInstance();
-  const client = Client.getInstance();
-  const authDatabase = client.getDatabase("auth");
+  const authDatabase = Client.getInstance().getDatabase("auth");
   const userService = new UserService(authDatabase);
 
   const existingUser: IUser | undefined = await userService

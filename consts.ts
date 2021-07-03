@@ -1,0 +1,10 @@
+enum EnvVars {
+  MONGO_URI = "MONGO_URI",
+  MONGO_PORT = "MONGO_PORT",
+  JWT_KEY = "JWT_KEY",
+  USER_ID = "USER_ID",
+  USER_NAME = "USER_NAME",
+  USER_PASSWORD = "USER_PASSWORD",
+}
+
+export { EnvVars };

@@ -1,4 +1,5 @@
 import { ConnectOptions, Database, MongoClient, Server } from "../../deps.ts";
+
 class Client {
   private static INSTANCE: Client;
   private mongoClient: MongoClient;
@@ -13,12 +14,12 @@ class Client {
   }
 
   async connect(
-    uri: string,
+    host: string,
     port: number,
     database: string,
   ): Promise<Database> {
     const server: Server = {
-      host: uri,
+      host: host,
       port: port,
     };
     const options: ConnectOptions = {
