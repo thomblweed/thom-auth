@@ -12,7 +12,7 @@ const signin = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
   const user: IUser = await body.value;
 
-  const authDatabase = Client.getInstance().getDatabase(AUTH_DATABASE);
+  const authDatabase = Client.getInstance().getMongoDatabase(AUTH_DATABASE);
   const userService = new UserService(authDatabase);
 
   const existingUser: IUser | undefined = await userService

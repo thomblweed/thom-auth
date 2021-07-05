@@ -13,7 +13,7 @@ class Client {
     return this.INSTANCE;
   }
 
-  async connect(
+  async connectMongo(
     host: string,
     port: number,
     database: string,
@@ -29,11 +29,11 @@ class Client {
     return await this.mongoClient.connect(options);
   }
 
-  getClient(): MongoClient {
+  getMongoClient(): MongoClient {
     return this.mongoClient;
   }
 
-  getDatabase(name: string): Database {
+  getMongoDatabase(name: string): Database {
     return this.mongoClient.database(name);
   }
 }

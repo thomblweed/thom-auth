@@ -1,7 +1,7 @@
 import { EnvVars } from "./consts.ts";
 
 const requiredEnvironmentVariables = [
-  EnvVars.MONGO_URI,
+  EnvVars.MONGO_HOST,
   EnvVars.MONGO_PORT,
   EnvVars.JWT_KEY,
   EnvVars.USER_ID,
