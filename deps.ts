@@ -1,3 +1,6 @@
+// Env
+import "https://deno.land/x/dotenv@v2.0.0/load.ts";
+
 // Oak
 export {
   Application,
@@ -14,7 +17,11 @@ export { Bson } from "https://deno.land/x/mongo@v0.21.2/deps.ts";
 export { Database } from "https://deno.land/x/mongo@v0.21.2/src/database.ts";
 export { MongoClient } from "https://deno.land/x/mongo@v0.21.2/src/client.ts";
 export { Collection } from "https://deno.land/x/mongo@v0.21.2/src/collection/collection.ts";
-export type { Document } from "https://deno.land/x/mongo@v0.21.2/src/types.ts";
+export type {
+  ConnectOptions,
+  Document,
+  Server,
+} from "https://deno.land/x/mongo@v0.21.2/src/types.ts";
 
 // JWT
 export { create, verify } from "https://deno.land/x/djwt@v2.2/mod.ts";

@@ -1,17 +1,18 @@
 import { BodyJson, Context } from "../../deps.ts";
 
 import { UserService } from "../data/user-service.ts";
-import { AuthDatabase } from "../data/auth-database.ts";
 import { IUser, IUserDTO } from "../interfaces/user.ts";
 import { BadRequestError } from "./errors/bad-request-error.ts";
 import { TokenManager } from "../services/token-manager.ts";
+import { Client } from "../data/client.ts";
+import { AUTH_DATABASE } from "../services/consts.ts";
 
 const signup = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
   const requestedUser: IUser = await body.value;
 
-  const authDatabase: AuthDatabase = AuthDatabase.getInstance();
-  const userService = new UserService(authDatabase.value);
+  const authDatabase = Client.getInstance().getMongoDatabase(AUTH_DATABASE);
+  const userService = new UserService(authDatabase);
 
   const existingUser: IUser | undefined = await userService
     .findUserByEmail(requestedUser.email);
