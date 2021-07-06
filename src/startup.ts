@@ -3,7 +3,6 @@ import { Bson, green, red } from "../deps.ts";
 import { Client } from "./data/client.ts";
 import { UserService } from "./data/user-service.ts";
 import { AUTH_DATABASE, EnvVars } from "./services/consts.ts";
-import PasswordManager from "./services/password-manager.ts";
 import {
   validateEnvironmentVariables,
   ValidationMessage,
@@ -38,13 +37,10 @@ const seedAdminUserData = async (client: Client) => {
   if (await userService.getNumberOfUsers() > 0) return;
 
   console.log("seeding user data");
-  const hashPassword: string = await PasswordManager.toHash(
-    Deno.env.get(EnvVars.USER_PASSWORD)!,
-  );
-  userService.addUser({
+  await userService.addUser({
     _id: new Bson.ObjectId(Deno.env.get(EnvVars.USER_ID)!),
     email: Deno.env.get(EnvVars.USER_NAME)!,
-    password: hashPassword,
+    password: Deno.env.get(EnvVars.USER_PASSWORD)!,
   });
   console.log(green("user data seeded successfully"));
 };
