@@ -28,7 +28,8 @@ const signup = async (ctx: Context) => {
   }
 
   const newUserDTO: IUserDTO = { id: newUser._id, email: newUser.email };
-  const token: string = await TokenManager.createTokenForUserDTO(newUserDTO);
+  const tokenManager = await TokenManager.getInstanceAsync();
+  const token: string = await tokenManager.createTokenForUserDTO(newUserDTO);
 
   //TODO: make this cookie secure when over https
   ctx.cookies.set("thom-jwt", token);

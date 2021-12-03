@@ -3,6 +3,9 @@ import { EnvVars } from "./consts.ts";
 const requiredEnvironmentVariables = [
   EnvVars.MONGO_HOST,
   EnvVars.MONGO_PORT,
+  EnvVars.MONGO_USERNAME,
+  EnvVars.MONGO_PASSWORD,
+  EnvVars.MONGO_PORT,
   EnvVars.JWT_KEY,
   EnvVars.USER_ID,
   EnvVars.USER_NAME,

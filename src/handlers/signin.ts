@@ -37,7 +37,8 @@ const signin = async (ctx: Context) => {
     id: existingUser._id,
     email: existingUser.email,
   };
-  const token: string = await TokenManager.createTokenForUserDTO(
+  const tokenmanager = await TokenManager.getInstanceAsync();
+  const token: string = await tokenmanager.createTokenForUserDTO(
     existingUserDTO,
   );
 

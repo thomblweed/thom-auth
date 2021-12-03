@@ -1,20 +1,48 @@
 import { create, Payload, verify } from "../../deps.ts";
 
 import { IUserDTO } from "../interfaces/user.ts";
+import { EnvVars } from "./consts.ts";
 
 class TokenManager {
-  static async createTokenForUserDTO(userDTO: IUserDTO): Promise<string> {
+  private static _instance: TokenManager | undefined;
+  private _key: CryptoKey;
+
+  private constructor(key: CryptoKey) {
+    this._key = key;
+  }
+
+  static async getInstanceAsync(): Promise<TokenManager> {
+    if (this._instance) {
+      return this._instance;
+    }
+    const key = await this.getTokenAsync(Deno.env.get(EnvVars.JWT_KEY)!);
+    return new TokenManager(key);
+  }
+
+  async createTokenForUserDTO(userDTO: IUserDTO): Promise<string> {
     const payload: Payload = { iss: JSON.stringify(userDTO) };
 
     return await create(
       { alg: "HS512", typ: "JWT" },
       payload,
-      Deno.env.get("JWT_KEY")!,
+      this._key,
     );
   }
 
-  static async verifyToken(jwt: string): Promise<Payload> {
-    return await verify(jwt, Deno.env.get("JWT_KEY")!, "HS512");
+  async verifyToken(jwt: string): Promise<Payload> {
+    return await verify(jwt, this._key);
+  }
+
+  private static async getTokenAsync(secret: string): Promise<CryptoKey> {
+    const encoder = new TextEncoder();
+    const keyBuf = encoder.encode(secret);
+    return await crypto.subtle.importKey(
+      "raw",
+      keyBuf,
+      { name: "HMAC", hash: "SHA-512" },
+      true,
+      ["sign", "verify"],
+    );
   }
 }
 

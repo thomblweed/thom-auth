@@ -1,8 +1,15 @@
-import { ConnectOptions, Database, MongoClient, Server } from "../../deps.ts";
+import {
+  ConnectOptions,
+  Credential,
+  Database,
+  MongoClient,
+  Server,
+} from "../../deps.ts";
 
 class Client {
   private static INSTANCE: Client;
   private mongoClient: MongoClient;
+  private credential: Credential | undefined;
 
   private constructor() {
     this.mongoClient = new MongoClient();
@@ -19,14 +26,19 @@ class Client {
     database: string,
   ): Promise<Database> {
     const server: Server = {
-      host: host,
-      port: port,
+      host,
+      port,
     };
     const options: ConnectOptions = {
       db: database,
       servers: [server],
+      ...(this.credential && { credential: this.credential }),
     };
     return await this.mongoClient.connect(options);
+  }
+
+  setCredential(credential: Credential): void {
+    this.credential = credential;
   }
 
   getMongoClient(): MongoClient {

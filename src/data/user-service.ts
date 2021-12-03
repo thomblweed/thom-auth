@@ -31,7 +31,7 @@ class UserService {
   }
 
   async getNumberOfUsers(): Promise<number> {
-    return await this.users.count();
+    return await this.users.countDocuments();
   }
 }
 

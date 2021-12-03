@@ -1,4 +1,4 @@
-enum EnvVars {
+const enum EnvVars {
   MONGO_URI = "MONGO_URI",
   MONGO_HOST = "MONGO_HOST",
   MONGO_PORT = "MONGO_PORT",
@@ -7,6 +7,8 @@ enum EnvVars {
   USER_ID = "USER_ID",
   USER_NAME = "USER_NAME",
   USER_PASSWORD = "USER_PASSWORD",
+  MONGO_USERNAME = "MONGO_USERNAME",
+  MONGO_PASSWORD = "MONGO_PASSWORD",
 }
 
 const AUTH_DATABASE = "auth";
