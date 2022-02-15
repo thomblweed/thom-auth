@@ -1,4 +1,4 @@
-FROM denoland/deno:1.16.3
+FROM denoland/deno:1.18.2
 
 EXPOSE 3001
 
@@ -13,4 +13,4 @@ ADD . .
 
 RUN deno cache --unstable app.ts
 
-CMD ["run", "--allow-net", "--allow-read", "--allow-env", "--unstable", "app.ts"]
+CMD ["deno", "run", "--allow-net", "--allow-read", "--allow-env", "--unstable", "app.ts"]
