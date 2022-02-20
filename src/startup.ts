@@ -36,6 +36,8 @@ const startup = async () => {
       : console.log(yellow("seed env var not set, data not seeded"));
   } catch (error) {
     console.log(red("startup error :>> "), error);
+
+    throw new Error("throwing startup error for retry");
   }
 };
 
