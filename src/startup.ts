@@ -1,12 +1,13 @@
-import { Bson, green, red, yellow } from "../deps.ts";
+import { green, red, yellow } from "../deps.ts";
 
 import { Client } from "./data/client.ts";
-import { UserService } from "./data/user-service.ts";
-import { AUTH_DATABASE, EnvVars } from "./services/consts.ts";
+import { Databases } from "./data/data.enum.ts";
+import { seedData } from "./data/services/seed.service.ts";
+import { EnvVars } from "./enums/env-vars.enum.ts";
 import {
   validateEnvironmentVariables,
   ValidationMessage,
-} from "./services/validate-environment.ts";
+} from "./validation/environment.validation.ts";
 
 const startup = async () => {
   try {
@@ -28,30 +29,17 @@ const startup = async () => {
       db: "admin",
       mechanism: "SCRAM-SHA-1",
     });
-    await client.connectMongo(host, port, AUTH_DATABASE);
+    await client.connectMongo(host, port, Databases.AUTH);
     console.log(green("successfully connected to mongodb"));
 
     Deno.env.get(EnvVars.SEED)
-      ? seedAdminUserData(client)
+      ? seedData(client.getMongoDatabase(Databases.AUTH))
       : console.log(yellow("seed env var not set, data not seeded"));
   } catch (error) {
     console.log(red("startup error :>> "), error);
 
     throw new Error("throwing startup error for retry");
   }
-};
-
-const seedAdminUserData = async (client: Client) => {
-  const userService = new UserService(client.getMongoDatabase(AUTH_DATABASE));
-  if ((await userService.getNumberOfUsers()) > 0) return;
-
-  console.log(yellow("seeding user data"));
-  await userService.addUser({
-    _id: new Bson.ObjectId(Deno.env.get(EnvVars.USER_ID)!),
-    email: Deno.env.get(EnvVars.USER_NAME)!,
-    password: Deno.env.get(EnvVars.USER_PASSWORD)!,
-  });
-  console.log(green("user data seeded successfully"));
 };
 
 export { startup };

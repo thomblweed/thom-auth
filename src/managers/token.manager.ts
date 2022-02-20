@@ -1,9 +1,8 @@
 import { create, Payload, verify } from "../../deps.ts";
+import { EnvVars } from "../enums/env-vars.enum.ts";
+import { UserDTO } from "../interfaces/user-dto.interface.ts";
 
-import { IUserDTO } from "../interfaces/user.ts";
-import { EnvVars } from "./consts.ts";
-
-class TokenManager {
+export class TokenManager {
   private static _instance: TokenManager | undefined;
   private _key: CryptoKey;
 
@@ -19,7 +18,7 @@ class TokenManager {
     return new TokenManager(key);
   }
 
-  async createTokenForUserDTO(userDTO: IUserDTO): Promise<string> {
+  async createTokenForUserDTO(userDTO: UserDTO): Promise<string> {
     const payload: Payload = { iss: JSON.stringify(userDTO) };
 
     return await create(
@@ -45,5 +44,3 @@ class TokenManager {
     );
   }
 }
-
-export { TokenManager };

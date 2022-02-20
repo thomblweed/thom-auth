@@ -1,4 +1,4 @@
-import { EnvVars } from "./consts.ts";
+import { EnvVars } from "../enums/env-vars.enum.ts";
 
 const requiredEnvironmentVariables = [
   EnvVars.MONGO_HOST,
@@ -10,6 +10,8 @@ const requiredEnvironmentVariables = [
   EnvVars.USER_ID,
   EnvVars.USER_NAME,
   EnvVars.USER_PASSWORD,
+  EnvVars.ADMIN_ROLE_ID,
+  EnvVars.USER_ROLE_ID,
 ];
 
 interface ValidationMessage {
