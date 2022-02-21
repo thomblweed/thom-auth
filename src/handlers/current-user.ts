@@ -1,6 +1,6 @@
 import { Context } from "../../deps.ts";
 
-const currentUser = async (ctx: Context) => {
+const currentUser = (ctx: Context) => {
   ctx.response.body = ctx.state;
 };
 

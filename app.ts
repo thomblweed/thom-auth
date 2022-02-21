@@ -5,7 +5,7 @@ import router from "./src/router/router.ts";
 import { startup } from "./src/startup.ts";
 
 const app: Application = new Application();
-const PORT: number = 3001;
+const PORT = 3001;
 
 app.use(
   oakCors({

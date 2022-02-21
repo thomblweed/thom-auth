@@ -2,7 +2,7 @@ import { Context, Middleware, red, State, yellow } from "../../../deps.ts";
 
 import { AuthError } from "./abstract/auth-error.ts";
 
-const errorHandler: Middleware<State, Context<State, Record<string, any>>> =
+const errorHandler: Middleware<State, Context<State, Record<string, unknown>>> =
   async (ctx: Context, next: () => Promise<unknown>) => {
     try {
       await next();

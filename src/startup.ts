@@ -30,13 +30,13 @@ const startup = async () => {
       mechanism: "SCRAM-SHA-1",
     });
     await client.connectMongo(host, port, Databases.AUTH);
-    console.log(green("successfully connected to mongodb"));
+    console.info(green("successfully connected to mongodb"));
 
     Deno.env.get(EnvVars.SEED)
       ? seedData(client.getMongoDatabase(Databases.AUTH))
-      : console.log(yellow("seed env var not set, data not seeded"));
+      : console.info(yellow("seed env var not set, data not seeded"));
   } catch (error) {
-    console.log(red("startup error :>> "), error);
+    console.error(red("startup error :>> "), error);
 
     throw new Error("throwing startup error for retry");
   }
