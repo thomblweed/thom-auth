@@ -34,7 +34,11 @@ const signup = async (ctx: Context) => {
     );
   }
 
-  const newUserDTO: UserDTO = { id: newUser._id, email: newUser.email };
+  const newUserDTO: UserDTO = {
+    id: newUser._id,
+    email: newUser.email,
+    role: newUser.role,
+  };
   const tokenManager = await TokenManager.getInstanceAsync();
   const token: string = await tokenManager.createTokenForUserDTO(newUserDTO);
 

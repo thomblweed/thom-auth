@@ -2,7 +2,7 @@ import { Collection, Database, Document } from "../../../deps.ts";
 import { User } from "../../interfaces/user.interface.ts";
 import { Collections } from "../data.enum.ts";
 import { PasswordManager } from "../../managers/password.manager.ts";
-import { DataService } from "../data.service.abstract.ts";
+import { DataService } from "../data.service.interface.ts";
 
 export class UserService implements DataService<User, Document> {
   private users: Collection<User>;

@@ -1,7 +1,7 @@
 import { Collection, Database, Document } from "../../../deps.ts";
 import { Role, RoleName } from "../../interfaces/role.interface.ts";
 import { Collections } from "../data.enum.ts";
-import { DataService } from "../data.service.abstract.ts";
+import { DataService } from "../data.service.interface.ts";
 
 export class RolesService implements DataService<Role, Document> {
   private roles: Collection<Role>;
