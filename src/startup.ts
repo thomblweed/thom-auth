@@ -11,12 +11,6 @@ import {
 
 const startup = async () => {
   try {
-    const validationMessages: ValidationMessage[] =
-      validateEnvironmentVariables(Deno.env.toObject());
-    if (validationMessages.length > 0) {
-      throw new Error(validationMessages.toString());
-    }
-
     const username = Deno.env.get(EnvVars.MONGO_USERNAME)!;
     const password = Deno.env.get(EnvVars.MONGO_PASSWORD)!;
     const host = Deno.env.get(EnvVars.MONGO_HOST)!;

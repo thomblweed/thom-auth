@@ -1,4 +1,5 @@
 import { EnvVars } from "../enums/env-vars.enum.ts";
+import { ValidationMessage } from "./validation-message.interface.ts";
 
 const requiredEnvironmentVariables = [
   EnvVars.MONGO_HOST,
@@ -13,10 +14,6 @@ const requiredEnvironmentVariables = [
   EnvVars.ADMIN_ROLE_ID,
   EnvVars.USER_ROLE_ID,
 ];
-
-interface ValidationMessage {
-  [index: number]: string;
-}
 
 const validateEnvironmentVariables = (
   variables: { [index: string]: string | number },

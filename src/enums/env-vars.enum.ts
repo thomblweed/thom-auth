@@ -1,4 +1,5 @@
 export const enum EnvVars {
+  CORS_ORIGIN = "CORS_ORIGIN",
   MONGO_URI = "MONGO_URI",
   MONGO_HOST = "MONGO_HOST",
   MONGO_PORT = "MONGO_PORT",
