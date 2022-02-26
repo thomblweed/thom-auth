@@ -13,7 +13,7 @@ validate();
 
 app.use(
   oakCors({
-    origin: Deno.env.get(EnvVars.CORS_ORIGIN) ?? "*",
+    origin: Deno.env.get(EnvVars.CORS_ORIGIN) ?? false,
     credentials: true,
   }),
 );

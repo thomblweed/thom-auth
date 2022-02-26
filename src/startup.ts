@@ -4,10 +4,6 @@ import { Client } from "./data/client.ts";
 import { Databases } from "./data/data.enum.ts";
 import { seedData } from "./data/services/seed.service.ts";
 import { EnvVars } from "./enums/env-vars.enum.ts";
-import {
-  validateEnvironmentVariables,
-  ValidationMessage,
-} from "./validation/environment.validation.ts";
 
 const startup = async () => {
   try {
