@@ -1,22 +1,23 @@
 import { BodyJson, Context } from "../../deps.ts";
 
 import { Client } from "../data/client.ts";
-import { UserService } from "../data/user-service.ts";
-import { IUser, IUserDTO } from "../interfaces/user.ts";
-import { AUTH_DATABASE } from "../services/consts.ts";
-import PasswordManager from "../services/password-manager.ts";
-import { TokenManager } from "../services/token-manager.ts";
+import { Databases } from "../data/data.enum.ts";
+import { UserService } from "../data/services/user.service.ts";
+import { UserDTO } from "../interfaces/user-dto.interface.ts";
+import { User } from "../interfaces/user.interface.ts";
+import { PasswordManager } from "../managers/password.manager.ts";
+import { TokenManager } from "../managers/token.manager.ts";
 import { BadRequestError } from "./errors/bad-request-error.ts";
 
 const signin = async (ctx: Context) => {
   const body: BodyJson = ctx.request.body({ type: "json" });
-  const user: IUser = await body.value;
+  const user: User = await body.value;
 
-  const authDatabase = Client.getInstance().getMongoDatabase(AUTH_DATABASE);
+  const authDatabase = Client.getInstance().getMongoDatabase(Databases.AUTH);
   const userService = new UserService(authDatabase);
 
-  const existingUser: IUser | undefined = await userService
-    .findUserByEmail(user.email);
+  const existingUser: User | undefined = await userService
+    .findByEmail(user.email);
   if (!existingUser) {
     throw new BadRequestError(
       `User with email '${user.email}' does not exist`,
@@ -33,9 +34,10 @@ const signin = async (ctx: Context) => {
     );
   }
 
-  const existingUserDTO: IUserDTO = {
+  const existingUserDTO: UserDTO = {
     id: existingUser._id,
     email: existingUser.email,
+    role: existingUser.role,
   };
   const tokenmanager = await TokenManager.getInstanceAsync();
   const token: string = await tokenmanager.createTokenForUserDTO(

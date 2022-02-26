@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  VERSION: 0.0.2
+
+tasks:
+  up:
+    cmds:
+      - docker compose up -d
+
+  down:
+    cmds:
+      - docker compose down --rmi local
+
+  docker-build:
+    cmds:
+      - docker build . -t thomasnewman/thom-auth:{{.VERSION}}
+
+  docker-deploy:
+    cmds:
+      - task: docker-build
+      - docker push thomasnewman/thom-auth:{{.VERSION}}
+      - docker rmi thomasnewman/thom-auth:{{.VERSION}}

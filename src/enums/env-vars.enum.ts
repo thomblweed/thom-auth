@@ -1,4 +1,5 @@
-const enum EnvVars {
+export const enum EnvVars {
+  CORS_ORIGIN = "CORS_ORIGIN",
   MONGO_URI = "MONGO_URI",
   MONGO_HOST = "MONGO_HOST",
   MONGO_PORT = "MONGO_PORT",
@@ -9,9 +10,6 @@ const enum EnvVars {
   USER_PASSWORD = "USER_PASSWORD",
   MONGO_USERNAME = "MONGO_USERNAME",
   MONGO_PASSWORD = "MONGO_PASSWORD",
+  ADMIN_ROLE_ID = "ADMIN_ROLE_ID",
+  USER_ROLE_ID = "USER_ROLE_ID",
 }
-
-const AUTH_DATABASE = "auth";
-const USERS_COLLECTION = "users";
-
-export { AUTH_DATABASE, EnvVars, USERS_COLLECTION };

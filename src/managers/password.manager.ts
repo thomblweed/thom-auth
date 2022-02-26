@@ -1,6 +1,6 @@
 import { bcrypt } from "../../deps.ts";
 
-class PasswordManager {
+export class PasswordManager {
   static async toHash(password: string): Promise<string> {
     const salt: string = await bcrypt.genSalt(8);
     const hashedPassword: string = await bcrypt.hash(password, salt);
@@ -15,5 +15,3 @@ class PasswordManager {
     return await bcrypt.compare(suppliedPassword, storedPassword);
   }
 }
-
-export default PasswordManager;
