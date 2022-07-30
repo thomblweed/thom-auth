@@ -28,7 +28,7 @@ export class UserService implements DataService<User, Document> {
     return await this.users.findOne({ _id: id });
   }
 
-  async findByEmail(email: string): Promise<User | undefined> {
-    return await this.users.findOne({ email: email });
+  async findByUsername(username: string): Promise<User | undefined> {
+    return await this.users.findOne({ username });
   }
 }

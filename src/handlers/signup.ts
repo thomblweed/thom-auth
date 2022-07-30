@@ -16,27 +16,29 @@ const signup = async (ctx: Context) => {
   const userService = new UserService(authDatabase);
 
   const existingUser: User | undefined = await userService
-    .findByEmail(requestedUser.email);
+    .findByUsername(requestedUser.username);
   if (existingUser) {
-    throw new BadRequestError(`email ${requestedUser.email} already in use`);
+    throw new BadRequestError(
+      `username ${requestedUser.username} already in use`,
+    );
   }
 
   const userId: Document | undefined = await userService.addOne(requestedUser);
   if (!userId) {
     throw new Error(
-      `Error creating new user with email :>> ${requestedUser.email}`,
+      `Error creating new user with username :>> ${requestedUser.username}`,
     );
   }
   const newUser: User | undefined = await userService.findById(userId);
   if (!newUser) {
     throw new Error(
-      `Error creating new user with email :>> ${requestedUser.email}`,
+      `Error creating new user with username :>> ${requestedUser.username}`,
     );
   }
 
   const newUserDTO: UserDTO = {
     id: newUser._id,
-    email: newUser.email,
+    username: newUser.username,
     role: newUser.role,
   };
   const tokenManager = await TokenManager.getInstanceAsync();

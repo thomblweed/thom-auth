@@ -3,6 +3,6 @@ import { RoleName } from "./role.interface.ts";
 
 export interface UserDTO {
   id: Document;
-  email: string;
+  username: string;
   role: RoleName;
 }

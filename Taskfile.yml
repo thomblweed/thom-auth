@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  VERSION: 0.0.3
+  VERSION: 0.0.4
 
 tasks:
   up:
@@ -16,7 +16,7 @@ tasks:
 
   docker-build:
     cmds:
-      - docker build . -t thomasnewman/thom-auth:{{.VERSION}}
+      - DOCKER_BUILDKIT=0 docker build . -t thomasnewman/thom-auth:{{.VERSION}}
 
   docker-deploy:
     cmds:

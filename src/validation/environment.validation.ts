@@ -13,6 +13,7 @@ const requiredEnvironmentVariables = [
   EnvVars.USER_PASSWORD,
   EnvVars.ADMIN_ROLE_ID,
   EnvVars.USER_ROLE_ID,
+  EnvVars.CORS_ORIGIN,
 ];
 
 const validateEnvironmentVariables = (

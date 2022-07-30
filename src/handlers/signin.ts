@@ -17,10 +17,10 @@ const signin = async (ctx: Context) => {
   const userService = new UserService(authDatabase);
 
   const existingUser: User | undefined = await userService
-    .findByEmail(user.email);
+    .findByUsername(user.username);
   if (!existingUser) {
     throw new BadRequestError(
-      `User with email '${user.email}' does not exist`,
+      `User with username '${user.username}' does not exist`,
     );
   }
 
@@ -36,7 +36,7 @@ const signin = async (ctx: Context) => {
 
   const existingUserDTO: UserDTO = {
     id: existingUser._id,
-    email: existingUser.email,
+    username: existingUser.username,
     role: existingUser.role,
   };
   const tokenmanager = await TokenManager.getInstanceAsync();

@@ -3,7 +3,7 @@ import { RoleName } from "./role.interface.ts";
 
 export interface User {
   _id: Document;
-  email: string;
+  username: string;
   password: string;
   role: RoleName;
 }

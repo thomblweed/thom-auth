@@ -8,7 +8,7 @@ const seedAdminUserData = async (userService: UserService) => {
   console.info(yellow("seeding user data"));
   await userService.addOne({
     _id: new Bson.ObjectId(Deno.env.get(EnvVars.USER_ID)!),
-    email: Deno.env.get(EnvVars.USER_NAME)!,
+    username: Deno.env.get(EnvVars.USER_NAME)!,
     password: Deno.env.get(EnvVars.USER_PASSWORD)!,
     role: "admin",
   });
